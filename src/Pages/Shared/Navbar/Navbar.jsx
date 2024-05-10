@@ -4,7 +4,9 @@ import { useContext, useEffect, useState } from "react";
 // import { AuthContext } from "../../providers/AuthProviders";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
-import logoHome from "../../../assets/images/main.svg"
+import logoHome from "../../../assets/images/main.svg";
+import bgImg from "../../../assets/images/bg.jpg";
+
 
 const Navbar = () => {
 //   const { user, logOut } = useContext(AuthContext);
@@ -118,11 +120,8 @@ const Navbar = () => {
   );
 
   return (
-    <div
-      data-aos="fade-left"
-      data-aos-duration="1000"
-      className="navbar bg-base-100 container mx-auto mt-4"
-    >
+    <div className="navbar bg-base-100 px-0 md:px-10" style={{backgroundImage: `url(${bgImg})`}}>
+
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
