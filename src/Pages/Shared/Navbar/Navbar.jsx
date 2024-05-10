@@ -147,7 +147,7 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
 
             <img className="h-[80px] w-[70px] rounded-full" src={logoHome} alt="" />
           <a
@@ -160,7 +160,7 @@ const Navbar = () => {
           >
             RestaurantRealm
           </a>
-        </div>
+        </Link>
       </div>
 
       <div className="navbar-end">

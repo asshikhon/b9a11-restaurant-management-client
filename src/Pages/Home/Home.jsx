@@ -2,7 +2,8 @@ import { Helmet } from "react-helmet-async";
 import logoHome from "../../assets/images/home.png";
 import Banner from "./Banner";
 import WhatsPopular from "./WhatsPopular";
-import OurServices from "./OurServices";
+import ViewDishes from "./ViewDishes";
+
 const Home = () => {
   return (
     <div>
@@ -12,7 +13,7 @@ const Home = () => {
       </Helmet>
       <Banner></Banner>
       <WhatsPopular></WhatsPopular>
-      <OurServices></OurServices>
+      <ViewDishes></ViewDishes>
     </div>
   );
 };
