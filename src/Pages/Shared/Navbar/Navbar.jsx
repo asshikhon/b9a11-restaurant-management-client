@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useContext, useEffect, useState } from "react";
-// import { AuthContext } from "../../providers/AuthProviders";
+import { useEffect, useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 import logoHome from "../../../assets/images/main.svg";
@@ -10,7 +9,7 @@ import useAuth from "../../../hooks/useAuth";
 
 
 const Navbar = () => {
-//   const { user, logOut } = useContext(AuthContext);
+
 const {user, logOut} = useAuth();
   const [theme, setTheme] = useState(() => {
     const localTheme = localStorage.getItem("theme");
@@ -26,19 +25,19 @@ const {user, logOut} = useAuth();
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-//   const handleLogOut = () => {
-//     logOut();
-//     Swal.fire({
-//       position: window.innerWidth <= 768 ? "top" : "top",
-//       width: "auto",
-//       padding: "1rem",
-//       showCloseButton: false,
-//       showCancelButton: false,
-//       text: "Logout Successfully",
-//       icon: "success",
-//       timer: 3000,
-//     });
-//   };
+  const handleLogOut = () => {
+    logOut();
+    Swal.fire({
+      position: window.innerWidth <= 768 ? "top" : "top",
+      width: "auto",
+      padding: "1rem",
+      showCloseButton: false,
+      showCancelButton: false,
+      text: "Logout Successfully",
+      icon: "success",
+      timer: 3000,
+    });
+  };
 
   const navLinks = (
     <>
@@ -188,9 +187,10 @@ const {user, logOut} = useAuth();
                 </div>
               </div> */}
               <div className="dropdown dropdown-end z-10">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+      <div tabIndex={0} role="button" data-tooltip-id="my-tooltip"
+                data-tooltip-content={user?.displayName} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <img alt="Photo Coming Soon..." src={user?.photoURL} />
         </div>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -200,7 +200,7 @@ const {user, logOut} = useAuth();
       </ul>
     </div>
               <button
-                // onClick={handleLogOut}
+                onClick={handleLogOut}
                 className="btn bg-green-500 btn-sm md:btn-md lg:text-lg lg:px-6 text-bold text-white "
               >
                 Logout
@@ -239,7 +239,7 @@ const {user, logOut} = useAuth();
   
 </label>
       </div>
-      <Tooltip id="my-tooltip" place="left" />
+      <Tooltip className="z-20" id="my-tooltip" place="left" />
     </div>
   );
 };

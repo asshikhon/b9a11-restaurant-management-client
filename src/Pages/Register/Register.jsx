@@ -8,15 +8,60 @@ import logo2 from "../../assets/images/main.svg";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 
-import { updateProfile } from "firebase/auth";
+import { updateProfile} from "firebase/auth";
 import useAuth from "../../hooks/useAuth";
 import { FaGithub } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, logOut } = useAuth();
+  const { createUser, logOut, googleLogin, githubLogin } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+    .then(() => {
+      Swal.fire({
+        position: window.innerWidth <= 768 ? "top" : "top",
+        width: "auto",
+        padding: "1rem",
+        showCloseButton: false,
+        showCancelButton: false,
+        text: "Login Successfully",
+        icon: "success",
+        timer: 3000,
+      });
+      // navigate
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch(error => {
+    toast.error(error.message);
+    })
+  }
+
+  const handleGithubLogin = () => {
+    githubLogin()
+    .then(() => {
+      Swal.fire({
+        position: window.innerWidth <= 768 ? "top" : "top",
+        width: "auto",
+        padding: "1rem",
+        showCloseButton: false,
+        showCancelButton: false,
+        text: "Login Successfully",
+        icon: "success",
+        timer: 3000,
+      });
+      // navigate
+      navigate(location?.state ? location.state : "/");
+    })
+    .catch(error => {
+    toast.error(error.message);
+    
+    })
+    
+    }
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -100,7 +145,7 @@ const Register = () => {
           {/* another  */}
           <div>
             <div
-              // onClick={handleGoogleSignIn}
+              onClick={handleGoogleLogin}
               className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
             >
               <div className="px-4 py-2">
@@ -129,7 +174,7 @@ const Register = () => {
               </span>
             </div>
             <div
-              // onClick={handleGoogleSignIn}
+              onClick={handleGithubLogin}
               className="flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
             >
               <div className="px-4 py-2">
