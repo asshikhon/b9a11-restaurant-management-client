@@ -1,5 +1,6 @@
 import { FaTwitter, FaYoutube } from "react-icons/fa";
 import homeLogo from "../../../assets/images/main.svg"
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -45,10 +46,10 @@ const Footer = () => {
            
         
         <div className="flex items-center justify-between">
-        <div className="flex items-center">
+        <Link className="flex items-center">
 
             <img className="h-[80px] w-[70px] rounded-full" src={homeLogo} alt="" />
-          <a
+          <p
             className="btn btn-ghost text-xl md:text-3xl lg:text-4xl"
             style={{
               background: "linear-gradient(to right, tomato, orange)",
@@ -57,8 +58,8 @@ const Footer = () => {
             }}
           >
             RestaurantRealm
-          </a>
-        </div>
+          </p>
+        </Link>
             
             <div className="flex -mx-2">
                 <a href="#" title="Twitter" className="mx-2 mt-[2px] text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Reddit">

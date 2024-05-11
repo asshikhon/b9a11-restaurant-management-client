@@ -6,10 +6,12 @@ import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 import logoHome from "../../../assets/images/main.svg";
 import bgImg from "../../../assets/images/bg.jpg";
+import useAuth from "../../../hooks/useAuth";
 
 
 const Navbar = () => {
 //   const { user, logOut } = useContext(AuthContext);
+const {user, logOut} = useAuth();
   const [theme, setTheme] = useState(() => {
     const localTheme = localStorage.getItem("theme");
     return localTheme ? localTheme : "light";
@@ -150,7 +152,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center">
 
             <img className="h-[80px] w-[70px] rounded-full" src={logoHome} alt="" />
-          <a
+          <p
             className="btn btn-ghost text-xl md:text-3xl lg:text-4xl"
             style={{
               background: "linear-gradient(to right, tomato, black, orange)",
@@ -159,7 +161,7 @@ const Navbar = () => {
             }}
           >
             RestaurantRealm
-          </a>
+          </p>
         </Link>
       </div>
 
@@ -168,9 +170,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
         <div className="dropdown dropdown-end pr-2">
-          {/* {user ? (
+          {user ? (
             <div className="flex items-center ">
-              <div
+              {/* <div
                 className="mr-2"
                 data-tooltip-id="my-tooltip"
                 data-tooltip-content={user?.displayName}
@@ -184,7 +186,19 @@ const Navbar = () => {
                     <img alt="Photo Coming Soon.." src={user?.photoURL} />
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <div className="dropdown dropdown-end z-10">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+        </div>
+      </div>
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li className="text-lg"><Link>My added food items</Link></li>
+        <li><Link>Add a food item</Link></li>
+        <li><Link>My ordered food items</Link></li>
+      </ul>
+    </div>
               <button
                 // onClick={handleLogOut}
                 className="btn bg-green-500 btn-sm md:btn-md lg:text-lg lg:px-6 text-bold text-white "
@@ -205,20 +219,9 @@ const Navbar = () => {
                 </button>
               </Link>
             </div>
-          )} */}
+          )}
 
-<div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-        </div>
-      </div>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><Link>My added food items</Link></li>
-        <li><Link>Add a food item</Link></li>
-        <li><Link>My ordered food items</Link></li>
-      </ul>
-    </div>
+
 
 
         </div>
