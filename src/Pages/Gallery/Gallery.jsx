@@ -1,5 +1,6 @@
 import title from "../../assets/images/title1.jpg";
 import section from "../../assets/images/section.jpg";
+import logoGallery from "../../assets/images/logogallery.png";
 import {
   Button,
   Dialog,
@@ -12,6 +13,7 @@ import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Gallery = () => {
   const { user } = useAuth();
@@ -20,7 +22,6 @@ const Gallery = () => {
   const [galleries, setGalleries] = useState([]);
 
   useEffect(() => {
-    // Fetch galleries data when component mounts
     fetchGalleries();
   }, []);
 
@@ -66,7 +67,7 @@ const Gallery = () => {
       const data = await response.json();
       if (data.insertedId) {
         toast.success("Gallery added successfully");
-        fetchGalleries(); // Fetch galleries again to update the list
+        fetchGalleries(); 
       }
       navigate("/gallery");
       setIsOpen(false);
@@ -77,6 +78,12 @@ const Gallery = () => {
 
   return (
     <div>
+
+<Helmet>
+        <link rel="icon" type="image/svg+xml" href={logoGallery} />
+        <title>RestaurantRealm || Gallery</title>
+      </Helmet>
+
       <div
         className="w-full h-40 text-center flex flex-col items-center justify-center"
         style={{ backgroundImage: `url(${title})` }}
