@@ -171,26 +171,12 @@ const {user, logOut} = useAuth();
         <div className="dropdown dropdown-end pr-2">
           {user ? (
             <div className="flex items-center ">
-              {/* <div
-                className="mr-2"
-                data-tooltip-id="my-tooltip"
-                data-tooltip-content={user?.displayName}
-              >
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-12 rounded-full">
-                    <img alt="Photo Coming Soon.." src={user?.photoURL} />
-                  </div>
-                </div>
-              </div> */}
+
               <div className="dropdown dropdown-end z-10">
       <div tabIndex={0} role="button" data-tooltip-id="my-tooltip"
                 data-tooltip-content={user?.displayName} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img alt="Photo Coming Soon..." src={user?.photoURL} />
+          <img referrerPolicy="no-referrer" alt="Photo Coming Soon..." src={user?.photoURL} />
         </div>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

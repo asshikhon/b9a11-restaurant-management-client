@@ -1,5 +1,4 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
 import { Toaster, toast } from "react-hot-toast";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import logo from "../../assets/images/register.jpg";
@@ -7,63 +6,43 @@ import logo1 from "../../assets/images/register.png";
 import logo2 from "../../assets/images/main.svg";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
-
-import { updateProfile} from "firebase/auth";
 import useAuth from "../../hooks/useAuth";
 import { FaGithub } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, logOut, googleLogin, githubLogin } = useAuth();
+  const {user, createUser, googleLogin, githubLogin, updateUserProfile, setUser} = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-    .then(() => {
-      Swal.fire({
-        position: window.innerWidth <= 768 ? "top" : "top",
-        width: "auto",
-        padding: "1rem",
-        showCloseButton: false,
-        showCancelButton: false,
-        text: "Login Successfully",
-        icon: "success",
-        timer: 3000,
-      });
-      // navigate
-      navigate(location?.state ? location.state : "/");
-    })
-    .catch(error => {
-    toast.error(error.message);
-    })
-  }
+  const handleGoogleLogin = async () => {
 
-  const handleGithubLogin = () => {
-    githubLogin()
-    .then(() => {
-      Swal.fire({
-        position: window.innerWidth <= 768 ? "top" : "top",
-        width: "auto",
-        padding: "1rem",
-        showCloseButton: false,
-        showCancelButton: false,
-        text: "Login Successfully",
-        icon: "success",
-        timer: 3000,
-      });
-      // navigate
-      navigate(location?.state ? location.state : "/");
-    })
-    .catch(error => {
-    toast.error(error.message);
-    
-    })
-    
+    try {
+await googleLogin();
+toast.success('Login Successfully')
+        // navigate
+        navigate(location?.state ? location.state : "/");
+    } catch(err) {
+        console.log(err);
+        toast.error(err?.message);
     }
 
+}
 
-  const handleRegister = (e) => {
+const handleGithubLogin = async () => {
+    try {
+        await githubLogin();
+        toast.success('Login Successfully')
+                // navigate
+                navigate(location?.state ? location.state : "/");
+            } catch(err) {
+                console.log(err);
+                toast.error(err?.message);
+            }
+  };
+
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     console.log(e.currentTarget);
     const form = e.target
@@ -85,35 +64,50 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-        updateProfile(result.user, {
-          displayName: `${name}`,
-          photoURL: `${photo}`,
-        })
-          .then(() => {
-            Swal.fire({
-              position: window.innerWidth <= 768 ? "top" : "top",
-              width: "auto",
-              padding: "1rem",
-              showCloseButton: false,
-              showCancelButton: false,
-              text: "Register Successfully",
-              icon: "success",
-              timer: 3000,
-            });
-            // navigate
+    try {
+        const result = await createUser(email, password)
+        console.log(result);
+        await updateUserProfile(name, photo)
+        setUser({ ...user, photoURL: photo, displayName: name })
+                    // navigate
             navigate(location?.state ? location.state : "/login");
-          })
-          .catch((error) => {
-            console.error(error.message);
-          });
-        logOut();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+            toast.success('Register Successfully')
+    } catch (err) {
+
+toast.error(err?.message)
+
+    }
+
+
+    // createUser(email, password)
+    //   .then((result) => {
+    //     console.log(result.user);
+    //     updateProfile(result.user, {
+    //       displayName: `${name}`,
+    //       photoURL: `${photo}`,
+    //     })
+    //       .then(() => {
+    //         Swal.fire({
+    //           position: window.innerWidth <= 768 ? "top" : "top",
+    //           width: "auto",
+    //           padding: "1rem",
+    //           showCloseButton: false,
+    //           showCancelButton: false,
+    //           text: "Register Successfully",
+    //           icon: "success",
+    //           timer: 3000,
+    //         });
+    //         // navigate
+    //         navigate(location?.state ? location.state : "/login");
+    //       })
+    //       .catch((error) => {
+    //         console.error(error.message);
+    //       });
+    //     logOut();
+    //   })
+    //   .catch((error) => {
+    //     toast.error(error.message);
+    //   });
   };
 
   return (

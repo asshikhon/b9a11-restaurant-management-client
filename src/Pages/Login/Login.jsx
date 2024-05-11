@@ -1,6 +1,5 @@
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import { Toaster, toast } from "react-hot-toast";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import logoLogin from "../../../src/assets/images/login.png";
@@ -15,73 +14,67 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then(() => {
-        Swal.fire({
-          position: window.innerWidth <= 768 ? "top" : "top",
-          width: "auto",
-          padding: "1rem",
-          showCloseButton: false,
-          showCancelButton: false,
-          text: "Login Successfully",
-          icon: "success",
-          timer: 3000,
-        });
-        // navigate
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+  //   const handleGoogleLogin = () => {
+  //     googleLogin()
+  //       .then(() => {
+  //         Swal.fire({
+  //           position: window.innerWidth <= 768 ? "top" : "top",
+  //           width: "auto",
+  //           padding: "1rem",
+  //           showCloseButton: false,
+  //           showCancelButton: false,
+  //           text: "Login Successfully",
+  //           icon: "success",
+  //           timer: 3000,
+  //         });
+  //         // navigate
+  //         navigate(location?.state ? location.state : "/");
+  //       })
+  //       .catch((error) => {
+  //         toast.error(error.message);
+  //       });
+  //   };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+      toast.success("Login Successfully");
+      // navigate
+      navigate(location?.state ? location.state : "/");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
   };
 
-  const handleGithubLogin = () => {
-    githubLogin()
-      .then(() => {
-        Swal.fire({
-          position: window.innerWidth <= 768 ? "top" : "top",
-          width: "auto",
-          padding: "1rem",
-          showCloseButton: false,
-          showCancelButton: false,
-          text: "Login Successfully",
-          icon: "success",
-          timer: 3000,
-        });
-        // navigate
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+  const handleGithubLogin = async () => {
+    try {
+      await githubLogin();
+      toast.success("Login Successfully");
+      // navigate
+      navigate(location?.state ? location.state : "/");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-    const form = new FormData(e.currentTarget);
-    const email = form.get("email");
-    const password = form.get("password");
-
-    signIn(email, password)
-      .then(() => {
-        Swal.fire({
-          position: window.innerWidth <= 768 ? "top" : "top",
-          width: "auto",
-          padding: "1rem",
-          showCloseButton: false,
-          showCancelButton: false,
-          text: "Login Successfully",
-          icon: "success",
-          timer: 3000,
-        });
-        // navigate
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch(() => {
-        toast.error("User Name Or Password Wrong");
-      });
+    try {
+      const result = await signIn(email, password);
+      console.log(result);
+      // navigate
+      navigate(location?.state ? location.state : "/");
+      toast.success("Login Successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
   };
 
   return (
