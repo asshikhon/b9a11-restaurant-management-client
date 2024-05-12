@@ -20,6 +20,7 @@ const Gallery = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [galleries, setGalleries] = useState([]);
+  // const [opens, setOpens] = useState(false);
 
   useEffect(() => {
     fetchGalleries();
@@ -34,6 +35,16 @@ const Gallery = () => {
       console.error("Error fetching galleries:", error);
     }
   };
+
+
+const handleOpen = () => {
+  if(!user){
+    navigate("/login");
+    return toast.error("Please login to add gallery");
+  }
+open()
+}
+
 
   function open() {
     setIsOpen(true);
@@ -97,7 +108,7 @@ const Gallery = () => {
       <div className="text-center mt-12">
         <>
           <Button
-            onClick={open}
+            onClick={handleOpen}
             className="rounded-md bg-orange-500 py-2 border-0 px-4 font-semibold text-lg text-white focus:outline-none hover:bg-black/30 focus:outline-white"
           >
             Add Gallery
@@ -197,7 +208,7 @@ const Gallery = () => {
       </div>
 
       <div
-        className="py-10 md:py-16 lg:py-24 mt-12"
+        className="py-10 md:py-16 mt-12"
         style={{ backgroundImage: `url(${section})` }}
       >
         <div className="grid my-10 container mx-auto md:my-16 lg:my-24 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-0">
