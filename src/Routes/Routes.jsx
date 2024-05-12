@@ -6,6 +6,8 @@ import ErrorPage from "../Errorpage/Errorpage";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Gallery from "../Pages/Gallery/Gallery";
+import AddFood from "../Pages/AddFood/AddFood";
+import AllFood from "../Pages/AllFood/AllFood";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,17 @@ path: "/gallery",
 element: <Gallery></Gallery>,
 loader: () => fetch(`${import.meta.env.VITE_API_URL}/gallery`)
       },
+{
+path: "/addFood",
+element: <AddFood></AddFood>,
+
+},
+{
+path: "/allFood",
+element: <AllFood></AllFood>,
+loader: () => fetch(`${import.meta.env.VITE_API_URL}/food`)
+},
+
       {
         path: "/contact",
         element: <ContactUs></ContactUs>,

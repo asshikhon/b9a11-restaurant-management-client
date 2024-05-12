@@ -180,9 +180,9 @@ const {user, logOut} = useAuth();
         </div>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li className="text-lg"><Link>My added food items</Link></li>
-        <li><Link>Add a food item</Link></li>
-        <li><Link>My ordered food items</Link></li>
+        <li className="text-lg"><Link to="/myItem">My added food items</Link></li>
+        <li><Link to="/addFood">Add a food item</Link></li>
+        <li><Link to="/myOrder">My ordered food items</Link></li>
       </ul>
     </div>
               <button
