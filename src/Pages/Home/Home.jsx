@@ -3,6 +3,7 @@ import logoHome from "../../assets/images/home.png";
 import Banner from "./Banner";
 import WhatsPopular from "./WhatsPopular";
 import ViewDishes from "./ViewDishes";
+import TopFoods from "./TopFoods";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <title>RestaurantRealm || Home</title>
       </Helmet>
       <Banner></Banner>
+      <TopFoods></TopFoods>
       <WhatsPopular></WhatsPopular>
       <ViewDishes></ViewDishes>
     </div>
