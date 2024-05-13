@@ -7,11 +7,11 @@ import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Gallery from "../Pages/Gallery/Gallery";
 import AddFood from "../Pages/AddFood/AddFood";
-import AllFood from "../Pages/AllFood/AllFood";
 import SingleFood from "../Pages/SingleFood/SingleFood";
 import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
 import MyAddedItems from "../Pages/MyAddedItems/MyAddedItems";
 import Foods from "../Pages/AllFood/Foods";
+import Update from "../Pages/MyAddedItems/Update";
 
 const router = createBrowserRouter([
   {
@@ -40,11 +40,7 @@ const router = createBrowserRouter([
         path: "/addFood",
         element: <AddFood></AddFood>,
       },
-      {
-        path: "/allFood",
-        element: <AllFood></AllFood>,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/food`),
-      },
+
       {
         path: "/foods",
         element: <Foods></Foods>,
@@ -65,6 +61,14 @@ const router = createBrowserRouter([
         element: <MyAddedItems></MyAddedItems>,
         loader: () =>
           fetch(`${import.meta.env.VITE_API_URL}`),
+      },
+      {
+        path: "/update/:id",
+        element: <Update></Update>,
+        loader: ({ params }) =>
+          fetch(
+            `${import.meta.env.VITE_API_URL}/food/${params.id}`
+          ),
       },
 
       {
