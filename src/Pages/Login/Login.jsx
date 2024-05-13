@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/images/login1.jpg";
+import axios from "axios";
 
 const Login = () => {
   const { signIn, googleLogin, githubLogin } = useContext(AuthContext);
@@ -37,19 +38,41 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await googleLogin();
-      toast.success("Login Successfully");
-      // navigate
+      // 1. google sign in from firebase
+      const result = await googleLogin()
+      console.log(result.user)
+
+      //2. get token from server using email
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      )
+      console.log(data)
+      toast.success('Login Successful')
       navigate(location?.state ? location.state : "/");
     } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
+      console.log(err)
+      toast.error(err?.message)
     }
-  };
+  }
 
   const handleGithubLogin = async () => {
     try {
-      await githubLogin();
+      const result = await githubLogin();
+      console.log(result.user)
+
+      //2. get token from server using email
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      )
+      console.log(data)
       toast.success("Login Successfully");
       // navigate
       navigate(location?.state ? location.state : "/");
@@ -67,7 +90,17 @@ const Login = () => {
 
     try {
       const result = await signIn(email, password);
-      console.log(result);
+      console.log(result.user)
+
+      //2. get token from server using email
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      )
+      console.log(data)
       // navigate
       navigate(location?.state ? location.state : "/");
       toast.success("Login Successfully");

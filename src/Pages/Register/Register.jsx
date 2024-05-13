@@ -8,38 +8,59 @@ import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { FaGithub } from "react-icons/fa";
+import axios from "axios";
 
 const Register = () => {
-  const {user, createUser, googleLogin, githubLogin, updateUserProfile, setUser} = useAuth();
+  const { createUser, googleLogin, githubLogin, updateUserProfile, setUser} = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
-
     try {
-await googleLogin();
-toast.success('Login Successfully')
-        // navigate
-        navigate(location?.state ? location.state : "/");
-    } catch(err) {
-        console.log(err);
-        toast.error(err?.message);
-    }
+      // 1. google sign in from firebase
+      const result = await googleLogin()
+      console.log(result.user)
 
-}
+      //2. get token from server using email
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      )
+      console.log(data)
+      toast.success('Login Successful')
+      navigate(location?.state ? location.state : "/");
+    } catch (err) {
+      console.log(err)
+      toast.error(err?.message)
+    }
+  }
 
 const handleGithubLogin = async () => {
-    try {
-        await githubLogin();
-        toast.success('Login Successfully')
-                // navigate
-                navigate(location?.state ? location.state : "/");
-            } catch(err) {
-                console.log(err);
-                toast.error(err?.message);
-            }
-  };
+  try {
+    const result = await githubLogin();
+    console.log(result.user)
+
+    //2. get token from server using email
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/jwt`,
+      {
+        email: result?.user?.email,
+      },
+      { withCredentials: true }
+    )
+    console.log(data)
+    toast.success("Login Successfully");
+    // navigate
+    navigate(location?.state ? location.state : "/");
+  } catch (err) {
+    console.log(err);
+    toast.error(err?.message);
+  }
+};
 
 
   const handleRegister = async (e) => {
@@ -68,7 +89,18 @@ const handleGithubLogin = async () => {
         const result = await createUser(email, password)
         console.log(result);
         await updateUserProfile(name, photo)
-        setUser({ ...user, photoURL: photo, displayName: name })
+        setUser({ ...result?.user, photoURL: photo, displayName: name })
+        console.log(result.user)
+
+        //2. get token from server using email
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: result?.user?.email,
+          },
+          { withCredentials: true }
+        )
+        console.log(data)
                     // navigate
             navigate(location?.state ? location.state : "/login");
             toast.success('Register Successfully')
