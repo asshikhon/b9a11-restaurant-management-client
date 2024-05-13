@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import section from "../../assets/images/bg.jpg"
+import { Link } from "react-router-dom";
 
 const TopFoods = () => {
     const [topFoods, setTopFoods] = useState([]);
@@ -37,9 +38,9 @@ fetch(`${import.meta.env.VITE_API_URL}/food`)
             <p className="mt-2 text-gray-600 dark:text-gray-200">Quantity : {food?.quantity}</p>
             <p className="mt-4 text-green-500 text-lg font-bold ">Price : {food?.price}$</p>
         
-            <div className="flex justify-end mt-4">
+            <Link to={`/single/${food._id}`} className="flex justify-end mt-4">
                 <button  className=" btn text-lg font-medium text-white bg-orange-500 border-0 " tabIndex="0" role="link">Details</button>
-            </div>
+            </Link>
         </div>
           ))}
         </div>

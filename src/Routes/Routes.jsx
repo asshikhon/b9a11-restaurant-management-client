@@ -8,6 +8,10 @@ import Login from "../Pages/Login/Login";
 import Gallery from "../Pages/Gallery/Gallery";
 import AddFood from "../Pages/AddFood/AddFood";
 import AllFood from "../Pages/AllFood/AllFood";
+import SingleFood from "../Pages/SingleFood/SingleFood";
+import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
+import MyAddedItems from "../Pages/MyAddedItems/MyAddedItems";
+import Foods from "../Pages/AllFood/Foods";
 
 const router = createBrowserRouter([
   {
@@ -20,30 +24,48 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-path: "/register",
-element: <Register></Register>
-
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-path: "/login",
-element: <Login></Login>
-
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-path: "/gallery",
-element: <Gallery></Gallery>,
-loader: () => fetch(`${import.meta.env.VITE_API_URL}/gallery`)
+        path: "/gallery",
+        element: <Gallery></Gallery>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/gallery`),
       },
-{
-path: "/addFood",
-element: <AddFood></AddFood>,
-
-},
-{
-path: "/allFood",
-element: <AllFood></AllFood>,
-loader: () => fetch(`${import.meta.env.VITE_API_URL}/food`)
-},
+      {
+        path: "/addFood",
+        element: <AddFood></AddFood>,
+      },
+      {
+        path: "/allFood",
+        element: <AllFood></AllFood>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/food`),
+      },
+      {
+        path: "/foods",
+        element: <Foods></Foods>,
+      },
+      {
+        path: "/single/:id",
+        element: <SingleFood></SingleFood>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
+      },
+      {
+        path: "/purchase/:id",
+        element: <FoodPurchase></FoodPurchase>,
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
+      },
+      {
+        path: "/myItem",
+        element: <MyAddedItems></MyAddedItems>,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_API_URL}`),
+      },
 
       {
         path: "/contact",

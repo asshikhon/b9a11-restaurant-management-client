@@ -53,16 +53,17 @@ const {user, logOut} = useAuth();
           Home
         </NavLink>
       </li>
+
       <li className="">
         <NavLink
-          to="/allFood"
+          to="/foods"
           className={({ isActive }) =>
             isActive
               ? "text-base font-semibold border border-[#23BE0A] rounded-lg text-[#23BE0A] hover:bg-[#23BE0A] hover:text-white"
               : "text-base z-[1] hover:bg-[#131313cc] hover:text-white"
           }
         >
-          All Foods
+         All Foods
         </NavLink>
       </li>
       <li className="">
