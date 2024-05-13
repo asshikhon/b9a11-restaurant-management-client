@@ -11,10 +11,9 @@ fetch(`${import.meta.env.VITE_API_URL}/food`)
 .then((data) => setTopFoods(data))
 
     }, [])
-    // console.log(topFoods);
 
     return (
-        <div className="my-12 md:my-16 lg:my-24">
+        <div className="mt-12 md:mt-16 lg:mt-24">
 
 
     <div className="text-center mb-12 dark:text-black">
