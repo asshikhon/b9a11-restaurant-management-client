@@ -2,75 +2,75 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import title2 from "../../assets/images/title1.jpg"
-import myLogo from "../../assets/images/mylist.png"
+import title2 from "../../assets/images/title1.jpg";
+import myLogo from "../../assets/images/mylist.png";
 import Swal from "sweetalert2";
-import axios from 'axios';
+import axios from "axios";
 
 
+const MyOrder = () => {
+    const { user, loading } = useAuth() || {};
+    const [item, setItem] = useState([]);
 
-const MyAddedItems = () => {
-const {user, loading} = useAuth() || {};
-const [item, setItem] = useState([]);
-
-useEffect( () => {
-fetch(`${import.meta.env.VITE_API_URL}/myItem/${user?.email}`)
-.then((res) => res.json())
-.then((data) => {
-    setItem(data)
-    console.log(data);
-})
-}, [user?.email]);
-
-
-const handleDelete = (_id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      axios.delete(
-        `${import.meta.env.VITE_API_URL}/food/${_id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-        .then((response) => {
-          const data = response.data;
-          
-          if (data.deletedCount > 0) {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your tourist spot has been deleted.",
-              icon: "success",
-            });
-            const remaining = item.filter((user) => user._id !== _id);
-            setItem(remaining);
-          }
+  
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/myOrder/${user?.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+            setItem(data);
         })
-        .catch((error) => {
-          console.error('Error deleting:', error);
-        });
+    }, [user?.email]);
+    
+
+    // const handleDelete = (_id) => {
+    //     Swal.fire({
+    //       title: "Are you sure?",
+    //       text: "You won't be able to revert this!",
+    //       icon: "warning",
+    //       showCancelButton: true,
+    //       confirmButtonColor: "#3085d6",
+    //       cancelButtonColor: "#d33",
+    //       confirmButtonText: "Yes, delete it!",
+    //     }).then((result) => {
+    //       if (result.isConfirmed) {
+    //         axios.delete(
+    //           `${import.meta.env.VITE_API_URL}/purchase/${_id}`,
+    //           {
+    //             headers: {
+    //               "Content-Type": "application/json",
+    //             },
+    //           }
+    //         )
+    //           .then((response) => {
+    //             const data = response.data;
+                
+    //             if (data.deletedCount > 0) {
+    //               Swal.fire({
+    //                 title: "Deleted!",
+    //                 text: "Your tourist spot has been deleted.",
+    //                 icon: "success",
+    //               });
+    //               const remaining = item.filter((user) => user._id !== _id);
+    //               setItem(remaining);
+    //             }
+    //           })
+    //           .catch((error) => {
+    //             console.error('Error deleting:', error);
+    //           });
+    //       }
+    //     });
+    //   };
+ 
+
+  
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center h-screen">
+          <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-gray-800"></div>
+        </div>
+      );
     }
-  });
-};
 
-
-
-if (loading) {
-    return (
-<div className="flex justify-center items-center h-screen">
-<div className="animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-gray-800"></div>
-</div>
-    );
-}
 
 
     return (
@@ -80,14 +80,14 @@ if (loading) {
         className="w-full h-40 mb-12 text-center flex flex-col items-center justify-center"
         style={{ backgroundImage: `url(${title2})` }}
       >
-        <h2 className="text-4xl text-white font-bold">My Added Food Items</h2>
+        <h2 className="text-4xl text-white font-bold">My purchase Page</h2>
 
       </div>
         
         
         <Helmet>
                         <link rel="shortcut icon" href={myLogo} type="image/x-icon" />
-                        <title>RestaurantRealm || MyAddedItems</title>
+                        <title>RestaurantRealm || MyPurchaseItems</title>
                     </Helmet>
         
               <div className="overflow-x-auto container mx-auto">
@@ -125,9 +125,7 @@ if (loading) {
                           >
                             Delete
                           </button>
-                          <Link to={`/update/${p._id}`} className="btn bg-green-600 border-0 text-white font-semibold text-lg">
-                            Update
-                          </Link>
+
                         </td>
                       </tr>
                     ))}
@@ -138,4 +136,4 @@ if (loading) {
     );
 };
 
-export default MyAddedItems;
+export default MyOrder;

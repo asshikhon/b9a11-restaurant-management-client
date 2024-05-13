@@ -12,6 +12,8 @@ import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
 import MyAddedItems from "../Pages/MyAddedItems/MyAddedItems";
 import Foods from "../Pages/AllFood/Foods";
 import Update from "../Pages/MyAddedItems/Update";
+import PrivateRoute from "./PrivateRoute";
+import MyOrder from "../Pages/MyOrder/MyOrder";
 
 const router = createBrowserRouter([
   {
@@ -53,22 +55,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/purchase/:id",
-        element: <FoodPurchase></FoodPurchase>,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <FoodPurchase></FoodPurchase>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
       },
       {
         path: "/myItem",
         element: <MyAddedItems></MyAddedItems>,
-        loader: () =>
-          fetch(`${import.meta.env.VITE_API_URL}`),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}`),
       },
       {
         path: "/update/:id",
         element: <Update></Update>,
         loader: ({ params }) =>
-          fetch(
-            `${import.meta.env.VITE_API_URL}/food/${params.id}`
-          ),
+          fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
+      },
+      {
+        path: "/myOrder",
+        element: <MyOrder></MyOrder>,
       },
 
       {

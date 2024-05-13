@@ -42,7 +42,7 @@ const Banner = () => {
                 <p className="mb-5 md:px-12 font-medium ">
                 Empower your restaurant's success with RestaurantRealm's expert tools and solutions for seamless management.
                 </p>
-                <Link to="/allFood" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
+                <Link to="/foods" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
                   All Foods
                 </Link>
               </div>
@@ -67,7 +67,7 @@ const Banner = () => {
                 <p className="mb-5 md:px-12 font-medium ">
                 Elevate operations and maximize success with RestaurantRealm's expert management solutions.
                 </p>
-                <Link to="/allFood" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
+                <Link to="/foods" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
                   All Foods
                 </Link>
               </div>
@@ -92,7 +92,7 @@ const Banner = () => {
                 <p className="mb-5 md:px-12 font-medium ">
                 Streamline your operations and excel with RestaurantRealm's trusted management solutions.
                 </p>
-                <Link to="/allFood" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
+                <Link to="/foods" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
                   All Foods
                 </Link>
               </div>
