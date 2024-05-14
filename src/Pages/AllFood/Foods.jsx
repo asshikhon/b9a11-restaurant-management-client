@@ -40,7 +40,7 @@ const Foods = () => {
   
     //  handle pagination button
     const handlePaginationButton = value => {
-      // console.log(value)
+   
       setCurrentPage(value)
     }
     const handleSearch = e => {

@@ -14,14 +14,16 @@ const {user, loading} = useAuth() || {};
 const [item, setItem] = useState([]);
 
 useEffect( () => {
-fetch(`${import.meta.env.VITE_API_URL}/myItem/${user?.email}`, {
-  credentials: "include"
-})
-.then((res) => res.json())
-.then((data) => {
-    setItem(data)
-    console.log(data);
-})
+if(user?.email) {
+  fetch(`${import.meta.env.VITE_API_URL}/myItem/${user?.email}`, {
+    credentials: "include"
+  })
+  .then((res) => res.json())
+  .then((data) => {
+      setItem(data)
+      console.log(data);
+  })
+}
 }, [user?.email]);
 
 

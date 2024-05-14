@@ -33,13 +33,14 @@ const FoodPurchase = () => {
 
     const buyer_email = user?.email;
     const buyer_name = user?.displayName;
+    const purchaseCount = parseInt(0);
     const buyer = {
       buyer_email,
       buyer_name,
     };
 
     const purchaseData = {
-      _id,
+      foodId: _id,
       price,
       buyingDate,
       name,
@@ -51,6 +52,7 @@ const FoodPurchase = () => {
       userName,
       description,
       quantity,
+      purchaseCount,
     };
     // send data to the server
     try {
