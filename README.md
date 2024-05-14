@@ -24,7 +24,7 @@ RestaurantRealm is a comprehensive web application designed to streamline restau
 
 
 
-## Category : assignment_category_0005
+## Category Name : Restaurant Management Website
  
 
 
