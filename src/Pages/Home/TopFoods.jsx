@@ -4,15 +4,20 @@ import { Link } from "react-router-dom";
 
 const TopFoods = () => {
   const [topFoods, setTopFoods] = useState([]);
+  const [sort, setSort] = useState('purchaseCount_DESC'); // Default sorting
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/food`)
-      .then((res) => res.json())
-      .then((data) => setTopFoods(data));
-  }, []);
+    fetch(`${import.meta.env.VITE_API_URL}/food?sort=${sort}`)
+        .then((res) => res.json())
+        .then((data) => setTopFoods(data))
+        .catch((error) => console.error("Error fetching top foods:", error));
+}, [sort]);
+
+
 
   return (
     <div className="mt-12 md:mt-16 lg:mt-24">
+
       <div className="text-center mb-12 dark:text-black">
         <h2 className="text-5xl font-bold mb-4">Top Foods</h2>
         <p className="text-lg font-semibold">
