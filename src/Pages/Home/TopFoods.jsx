@@ -70,7 +70,7 @@ const TopFoods = () => {
         <div className="flex justify-center items-center">
         <Link
           to="/foods"
-          className="btn w-[20%] bg-orange-500 border-0 text-center text-white text-lg flex justify-center items-center"
+          className="btn h-auto w-[20%] bg-orange-500 border-0 text-center text-white text-lg flex justify-center items-center"
         >
           See All Foods
         </Link>

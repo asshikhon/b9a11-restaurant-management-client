@@ -43,7 +43,7 @@ const WhatsPopular = () => {
 	</div>
 </div>
 {/* card 2 */}
-<div className="w-auto rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800" >
+<div className="w-auto h-[600px] rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800" >
 	<img src={two} alt="" className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
 
 <div className="block mx-auto text-center text-[#9a9a9a] w-1/2 mt-5 p-1 pl-2 rounded-lg bg-[#ebebeb]">
@@ -61,9 +61,9 @@ const WhatsPopular = () => {
   <input type="radio" name="rating-4" className="mask mask-star-2 bg-orange-400" />
   <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400"/>
 </div>
-			<p className="dark:text-gray-800 text-center w-3/4 mx-auto block">With basil, mozzarella, tomatoes</p>
+			<p className="dark:text-gray-800 text-center pb-14 w-3/4 mx-auto block">With basil, mozzarella, tomatoes</p>
 		</div>
-        <button type="button" className="w-[60%] mx-auto block p-3 font-semibold tracking-wide rounded-full border-0 bg-orange-400  dark:text-gray-50">QUICK VIEW</button>
+        <button type="button" className="w-[60%] p mx-auto block p-3 font-semibold tracking-wide rounded-full border-0 bg-orange-400  dark:text-gray-50">QUICK VIEW</button>
 
 	</div>
 </div>

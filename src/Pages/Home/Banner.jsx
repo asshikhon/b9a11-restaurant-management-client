@@ -26,7 +26,7 @@ const Banner = () => {
       >
         <SwiperSlide>
           <div
-            className="hero h-auto w-auto md:h-[550px] lg:h-[800px]"
+            className="hero h-[400px] w-auto md:h-[550px] lg:h-[800px]"
             style={{
               backgroundImage: `url(${banner1})`,
               backgroundSize: "cover",
@@ -51,7 +51,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="hero h-auto w-auto md:h-[550px] lg:h-[800px]"
+            className="hero h-[400px] w-auto md:h-[550px] lg:h-[800px]"
             style={{
               backgroundImage: `url(${banner2})`,
               backgroundSize: "cover",
@@ -76,7 +76,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="hero h-auto w-auto md:h-[550px] lg:h-[800px]"
+            className="hero h-[400px] w-auto md:h-[550px] lg:h-[800px]"
             style={{
               backgroundImage: `url(${banner3})`,
               backgroundSize: "cover",

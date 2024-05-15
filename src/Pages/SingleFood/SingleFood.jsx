@@ -25,7 +25,7 @@ const SingleFood = () => {
         <title>RestaurantRealm || details{_id}</title>
       </Helmet>
 
-      <div className="flex gap-8">
+      <div className="flex flex-col md:flex-row gap-8">
         <img
           src={photoURL}
           alt=""

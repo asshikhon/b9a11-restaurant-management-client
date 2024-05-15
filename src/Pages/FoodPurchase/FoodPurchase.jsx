@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 const FoodPurchase = () => {
   const food = useLoaderData();
+  
   const { user } = useAuth();
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(new Date());

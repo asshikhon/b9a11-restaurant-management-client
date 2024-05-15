@@ -14,7 +14,7 @@ const {user, loading} = useAuth() || {};
 const [item, setItem] = useState([]);
 
 useEffect( () => {
-if(user?.email) {
+if(user?.email){
   fetch(`${import.meta.env.VITE_API_URL}/myItem/${user?.email}`, {
     credentials: "include"
   })
@@ -26,6 +26,7 @@ if(user?.email) {
 }
 }, [user?.email]);
 
+console.log(item);
 
 const handleDelete = (_id) => {
   Swal.fire({
