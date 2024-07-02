@@ -37,12 +37,17 @@ const Banner = () => {
             <div className="hero-content text-center text-neutral-content">
               <div>
                 <h1 className="mb-5 text-3xl md:text-4xl lg:text-6xl font-bold md:leading-[40px]  lg:leading-[76px]">
-                Master Restaurant Management with RestaurantRealm's Expert Solutions.
+                  Master Restaurant Management with RestaurantRealm's Expert
+                  Solutions.
                 </h1>
                 <p className="mb-5 md:px-12 font-medium ">
-                Empower your restaurant's success with RestaurantRealm's expert tools and solutions for seamless management.
+                  Empower your restaurant's success with RestaurantRealm's
+                  expert tools and solutions for seamless management.
                 </p>
-                <Link to="/foods" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
+                <Link
+                  to="/foods"
+                  className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg"
+                >
                   All Foods
                 </Link>
               </div>
@@ -62,12 +67,17 @@ const Banner = () => {
             <div className="hero-content text-center text-neutral-content">
               <div>
                 <h1 className="mb-5 text-3xl md:text-4xl lg:text-6xl font-bold md:leading-[40px]  lg:leading-[76px]">
-                Transform Your Restaurant with RestaurantRealm's Management Expertise.
+                  Transform Your Restaurant with RestaurantRealm's Management
+                  Expertise.
                 </h1>
                 <p className="mb-5 md:px-12 font-medium ">
-                Elevate operations and maximize success with RestaurantRealm's expert management solutions.
+                  Elevate operations and maximize success with RestaurantRealm's
+                  expert management solutions.
                 </p>
-                <Link to="/foods" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
+                <Link
+                  to="/foods"
+                  className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg"
+                >
                   All Foods
                 </Link>
               </div>
@@ -87,19 +97,22 @@ const Banner = () => {
             <div className="hero-content text-center text-neutral-content">
               <div>
                 <h1 className="mb-5 text-3xl md:text-4xl lg:text-6xl font-bold md:leading-[40px]  lg:leading-[76px]">
-                Trust RestaurantRealm for Your Restaurant Management Needs.
+                  Trust RestaurantRealm for Your Restaurant Management Needs.
                 </h1>
                 <p className="mb-5 md:px-12 font-medium ">
-                Streamline your operations and excel with RestaurantRealm's trusted management solutions.
+                  Streamline your operations and excel with RestaurantRealm's
+                  trusted management solutions.
                 </p>
-                <Link to="/foods" className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg">
+                <Link
+                  to="/foods"
+                  className="btn bg-orange-500 px-7 border-0 btn-primary text-white font-bold text-lg"
+                >
                   All Foods
                 </Link>
               </div>
             </div>
           </div>
         </SwiperSlide>
-
       </Swiper>
     </div>
   );

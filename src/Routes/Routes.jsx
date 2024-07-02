@@ -65,18 +65,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/myItem",
-        element: <MyAddedItems></MyAddedItems>,
+        element: <PrivateRoute><MyAddedItems></MyAddedItems></PrivateRoute>,
         loader: () => fetch(`${import.meta.env.VITE_API_URL}`),
       },
       {
         path: "/update/:id",
-        element: <Update></Update>,
+        element:<PrivateRoute> <Update></Update></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
       },
       {
         path: "/myOrder",
-        element: <MyOrder></MyOrder>,
+        element: <PrivateRoute><MyOrder></MyOrder></PrivateRoute>,
       },
 
       {

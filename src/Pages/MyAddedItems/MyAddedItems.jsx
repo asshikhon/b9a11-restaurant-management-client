@@ -130,7 +130,7 @@ if (loading) {
                           >
                             Delete
                           </button>
-                          <Link to={`/update/${p._id}`} className="btn bg-green-600 border-0 text-white font-semibold text-lg">
+                          <Link  to={`/update/${p._id}`} className="btn bg-green-600 border-0 text-white font-semibold text-lg">
                             Update
                           </Link>
                         </td>

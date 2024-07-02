@@ -104,14 +104,14 @@ open()
           Explore Our Vibrant Restaurant Gallery
         </p>
       </div>
-
+{/* modal */}
       <div className="text-center mt-12">
         <>
           <Button
             onClick={handleOpen}
             className="rounded-md bg-orange-500 py-2 border-0 px-4 font-semibold text-lg text-white focus:outline-none hover:bg-black/30 focus:outline-white"
           >
-            Add Gallery
+            Add
           </Button>
 
           <Transition appear show={isOpen}>
@@ -136,7 +136,7 @@ open()
                         as="h3"
                         className="text-2xl font-bold text-center text-orange-500"
                       >
-                        Add Gallery
+                        Add
                       </DialogTitle>
                       <form onSubmit={handleAddGallery} className="">
                         <div>
@@ -185,7 +185,7 @@ open()
                           </div>
                           <input
                             type="submit"
-                            value="Add Gallery"
+                            value="Add To Gallery"
                             className="btn w-full mt-5 bg-orange-600 text-base text-white border-0 rounded-md border-[#331A15]"
                           />
                         </div>
